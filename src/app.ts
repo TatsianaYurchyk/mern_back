@@ -27,7 +27,7 @@ app.use(session({
 }));
 
 // app.use("/api/users", userRoutes)
-app.use("http://mern-register.onrender.com/api/users", userRoutes)
+app.use("https://mern-register.onrender.com/api/users", userRoutes)
 
 app.use((req, res, next) => {
     next(createHttpError(404,"Endpoint not found"));

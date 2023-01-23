@@ -6,8 +6,11 @@ import createHttpError, {isHttpError} from "http-errors";
 import session from "express-session";
 import env from "./util/validateEnv";
 import MongoStore from "connect-mongo";
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors())
 
 app.use(morgan("dev"));
 
@@ -26,8 +29,8 @@ app.use(session({
     }),
 }));
 
-// app.use("/api/users", userRoutes)
-app.use("https://mern-register-api.onrender.com/api/users", userRoutes)
+app.use("/api/users", userRoutes)
+// app.use("https://mern-register.onrender.com/api/users", userRoutes)
 
 app.use((req, res, next) => {
     next(createHttpError(404,"Endpoint not found"));

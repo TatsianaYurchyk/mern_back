@@ -74,7 +74,7 @@ export const logIn: RequestHandler<unknown,unknown,LoginBody,unknown> = async (r
         const status = await UserModel.findOne({username:username,status:"blocked"}).select("+password +email").exec();
         
         if (!user){
-            throw createHttpError(401,"Invalid data");
+            throw createHttpError(401,"There is no such user, please Sign Up at first");
         }
         if (status){
             throw createHttpError(401,"You are blocked");
